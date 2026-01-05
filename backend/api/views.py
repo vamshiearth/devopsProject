@@ -10,6 +10,18 @@ class HealthView(APIView):
         return Response({"status": "ok"})
 
 
+class RootView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        return Response(
+            {
+                "message": "API is running.",
+                "endpoints": ["/health/", "/me/"],
+            }
+        )
+
+
 class MeView(APIView):
     permission_classes = [IsAuthenticated]
 
